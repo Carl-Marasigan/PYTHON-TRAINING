@@ -1,0 +1,222 @@
+# BOOKSHELF
+
+class Book:
+    def __init__(self, name: str, author: str, genres: set[str]):
+        """
+        Initializes a new book with name, author, and genres.
+
+        :param name: The name of the book.
+        :param author: The author of the book.
+        :param genres: A set of genres the book belongs to.
+        """
+        self.name = name
+        self.author = author
+        self.genres = genres
+
+    def __str__(self) -> str:
+        """
+        Returns a string representation of the book with name, author, and genres.
+        """
+        return f"Name: {self.name}, Author: {self.author}, Genres: {', '.join(self.genres)}"
+
+
+class Bookshelf:
+    def __init__(self):
+        """
+        Initializes an empty bookshelf with a fixed capacity of 10 books.
+        """
+        self.books = []
+
+    def add_book(self, book: Book):
+        """
+        Adds a book to the bookshelf if it's not already in the bookshelf
+        and if there is space available.
+
+        :param book: The book to add to the bookshelf.
+        """
+
+        if len(self.books) >= 10:
+            print("Warning: Bookshelf is full! Cannot add more books.")
+            return
+
+        for b in self.books:
+            if b.name == book.name and b.author == book.author and b.genres == book.genres:
+                print("Warning: This exact book already exists on the shelf.")
+                return
+
+        self.books.append(book)
+        print(f"Success: '{book.name}' added to the shelf.")
+
+
+    pass  # Implement logic to check if book already exists or if shelf is full.
+
+    def remove_book(self, name: str):
+        """
+        Removes a book by name from the bookshelf.
+
+        :param name: The name of the book to remove.
+        """
+        for book in self.books:
+            if book.name.lower() == name.lower():
+                self.books.remove(book)
+                print(f"Success: '{name}' has been removed.")
+                return
+        print(f"Warning: Book '{name}' not found.")
+        pass  # Implement logic to search and remove a book by name.
+
+    def get_all_names(self):
+        """
+        Prints the names of all books in the bookshelf.
+        """
+        if not self.books:
+            print("The bookshelf is empty.")
+        else:
+            print("Books on shelf:", [book.name for book in self.books])
+
+        pass  # Implement logic to print book names.
+
+    def get_all_genres(self):
+        """
+        Returns a list of all unique genres in the bookshelf.
+        """
+        genres = set()
+        for book in self.books:
+            genres.update(book.genres)
+        return list(genres)
+
+        pass  # Implement logic to collect and return all genres.
+
+    def get_all_authors(self):
+        """
+        Returns a list of all unique authors in the bookshelf.
+
+        """
+        authors = {book.author for book in self.books}
+        return list(authors)
+
+        pass  # Implement logic to collect and return all authors.
+
+    def get_book(self, name: str):
+        """
+        Prints the details of the book by name (name, author, genres).
+
+        :param name: The name of the book to search for.
+
+        """
+        for book in self.books:
+            if book.name.lower() == name.lower():
+                print(book)
+                return
+        print(f"Warning: Book '{name}' not found.")
+
+        pass  # Implement logic to search for a book by name and print its details.
+
+    def get_books_by_genre(self, genre: str):
+        """
+        Prints all books in the bookshelf that match the provided genre.
+
+        :param genre: The genre to search for.
+
+        """
+        found = [book for book in self.books if genre.lower() in [g.lower() for g in book.genres]]
+        if found:
+            for book in found: print(book)
+        else:
+            print(f"Warning: No books found with genre '{genre}'.")
+
+        pass  # Implement logic to filter books by genre.
+
+    def get_books_by_author(self, author: str):
+        """
+        Prints all books in the bookshelf that match the provided author.
+
+        :param author: The author to search for.
+        """
+        found = [book for book in self.books if book.author.lower() == author.lower()]
+        if found:
+            for book in found: print(book)
+        else:
+            print(f"Warning: No books found by author '{author}'.")
+
+        pass  # Implement logic to filter books by author.
+
+
+def main():
+    bookshelf = Bookshelf()
+
+    while True:
+        print("\n--- Bookshelf Management System ---")
+        print("1. Add new book")
+        print("2. Remove book")
+        print("3. Get all names")
+        print("4. Get all genres")
+        print("5. Get all authors")
+        print("6. Get book")
+        print("7. Get books by genre")
+        print("8. Get books by author")
+        print("9. Exit")
+        choice = input("Please select an option: ")
+
+        if choice == '1':
+            # Add new book: get name, author, genres from user
+            name = input("Enter book name: ")
+            author = input("Enter author: ")
+            genres = set(input("Enter genres (comma separated): ").split(","))
+            bookshelf.add_book(Book(name.strip(), author.strip(), {g.strip() for g in genres}))
+
+            pass  # Implement logic to add a new book
+
+        elif choice == '2':
+            # Remove book: get book name from user
+
+            name = input("Enter the name of the book to remove: ")
+            bookshelf.remove_book(name)
+            pass  # Implement logic to remove a book
+
+        elif choice == '3':
+            # Get all book names
+            bookshelf.get_all_names()
+            pass  # Implement logic to display all book names
+
+        elif choice == '4':
+            # Get all genres
+            genres = bookshelf.get_all_genres()
+            print("Unique Genres:", genres if genres else "None")
+
+        elif choice == '5':
+            # Get all authors
+            authors = bookshelf.get_all_authors()
+            print("Unique Authors:", authors if authors else "None")
+
+            pass  # Implement logic to display all authors
+
+        elif choice == '6':
+            # Get book details by name
+            name = input("Enter book name: ")
+            bookshelf.get_book(name)
+
+            pass  # Implement logic to display book details by name
+
+        elif choice == '7':
+            # Get books by genre
+            genre = input("Enter genre: ")
+            bookshelf.get_books_by_genre(genre)
+            pass  # Implement logic to display books by genre
+
+        elif choice == '8':
+            # Get books by author
+            author = input("Enter author: ")
+            bookshelf.get_books_by_author(author)
+
+            pass  # Implement logic to display books by author
+
+        elif choice == '9':
+            print("Exiting the program.")
+            break  # Exit the program
+
+        else:
+            print("Invalid choice. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
