@@ -1,0 +1,20 @@
+version = 1
+revision = 3
+requires-python = ">=3.14"
+
+[[package]]
+name = "arithmetic"
+version = "0.6.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/b4/0a/18f0b667bd414bd8739d0cfb9e29e7c95b43721941ae97975608cb62fc73/arithmetic-0.6.2.tar.gz", hash = "sha256:2415b3b8d1e0680cde85bb960b5da04ee218811cc6c013131ab40b77b98e434b", size = 25839, upload-time = "2018-02-13T03:01:21.585Z" }
+
+[[package]]
+name = "marasigan-package"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "arithmetic" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "arithmetic", specifier = ">=0.6.2" }]

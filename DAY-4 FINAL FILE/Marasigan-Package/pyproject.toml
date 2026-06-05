@@ -1,0 +1,7 @@
+[project]
+name = "marasigan-package"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "arithmetic>=0.6.2",
+]

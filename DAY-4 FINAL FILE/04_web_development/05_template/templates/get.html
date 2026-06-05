@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Greeting</title>
+</head>
+<body>
+    <form action="/greet" method="get">
+        <input type="text" name="name" placeholder="Enter your name">
+        <button type="submit">Greet Me</button>
+    </form>
+
+    {% if name %}
+        <h2>Hello, {{ name }}!</h2>
+    {% endif %}
+</body>
+</html>

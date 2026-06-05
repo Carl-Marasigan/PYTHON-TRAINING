@@ -1,0 +1,24 @@
+<!-- Parent file with contents -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Has default but children can overwrite -->
+    <title>{% block title %}My Flask App{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Flask App</h1>
+    </header>
+
+    <div>
+        {% block content %}
+        <!-- This area will be overridden by child templates -->
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2024 My Flask App</p>
+    </footer>
+</body>
+</html>

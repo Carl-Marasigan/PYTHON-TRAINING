@@ -1,0 +1,14 @@
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Location</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.location }}</td>
+    </tr>
+    {% endfor %}
+</table>
